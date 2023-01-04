@@ -8,6 +8,9 @@
   --color-gray-blue-4: hsl(219, 14%, 63%);
   --color-gray-blue-5: hsl(219, 12%, 42%);
   --color-dark-blue: hsl(224, 21%, 14%);
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 1.5rem;
 }
 
 *,
@@ -20,4 +23,54 @@
 
 html {
   font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+body {
+  background-color: var(--color-gray-blue-1);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 50rem;
+  margin: 5rem auto;
+  padding: 1.5rem;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+}
+
+.container__title {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.container__number {
+  margin-left: 0.5rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-blue);
+  color: white;
+  font-size: 1rem;
+}
+
+.container__mark-read {
+  justify-self: end;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  color: var(--color-gray-blue-5);
+  transition: all 0.2s;
+}
+
+.container__mark-read:hover {
+  color: var(--color-dark-blue);
+  cursor: pointer;
 }
