@@ -5,47 +5,35 @@ import css from "../utils/css.js";
 The notification class is responsible for generating the base element that all notifications share and
 marking the element as read. It is a general class so it should not be instantiated.
 
-Subclasses can be used to create specific notification types that have their own body text and elements.
-
-Subclasses must implement getBodyText 
-Subclasses may implement addElements
+Subclasses can be used to create specific notification types that have
+custom text and markup.
 */
 
 class Notification {
   constructor(config) {
-    this.unread = config.unread;
-    this.name = config.name;
-    this.timestamp = config.timestamp;
-    this.profileImageUrl = config.profileImageUrl;
-
-    this.htmlElement = this.createBaseElement();
-  }
-
-  createBaseElement() {
     const noti = buildElement("li", { className: css.noti });
 
-    if (this.unread) {
+    if (config.unread) {
       noti.classList.add(css.unread);
     }
 
     const image = buildElement("img", {
       className: css.profileImg,
-      src: this.profileImageUrl,
+      src: config.profileImageUrl,
     });
 
     const message = buildElement("p", {
       className: css.bodyText,
-      textContent: this.getBodyText(),
     });
 
     const name = buildElement("span", {
       className: css.name,
-      textContent: this.name,
+      textContent: config.name,
     });
 
     const time = buildElement("span", {
       className: css.time,
-      textContent: this.timestamp,
+      textContent: config.timestamp,
     });
 
     noti.appendChild(image);
@@ -53,16 +41,26 @@ class Notification {
     noti.appendChild(time);
     message.prepend(name);
 
-    return noti;
+    this.htmlElement = noti;
+    this.messageElement = message;
   }
 
   getElement() {
     return this.htmlElement;
   }
 
+  addToMessage(element) {
+    this.messageElement.append(element);
+  }
+
+  addElement(element) {
+    const rootElement = this.getElement();
+    rootElement.append(element);
+  }
+
   markAsRead() {
-    this.unread = false;
-    this.htmlElement.classList.toggle(css.unread);
+    const rootElement = this.getElement();
+    rootElement.classList.remove(css.unread);
   }
 }
 

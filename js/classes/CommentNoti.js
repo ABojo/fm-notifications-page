@@ -5,22 +5,14 @@ import css from "../utils/css.js";
 class CommentNoti extends Notification {
   constructor(config) {
     super(config);
-    this.postImageUrl = config.postImageUrl;
 
-    this.addExtraElements();
-  }
-
-  getBodyText() {
-    return "commented on your picture ";
-  }
-
-  addExtraElements() {
     const postImage = buildElement("img", {
       className: css.postImage,
-      src: this.postImageUrl,
+      src: config.postImageUrl,
     });
 
-    this.htmlElement.appendChild(postImage);
+    this.addToMessage("commented on your picture ");
+    this.addElement(postImage);
   }
 }
 

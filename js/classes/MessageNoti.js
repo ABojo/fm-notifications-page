@@ -7,21 +7,13 @@ class MessageNoti extends Notification {
     super(config);
     this.messageText = config.messageText;
 
-    this.addExtraElements();
-  }
-
-  getBodyText() {
-    return "sent you a private message";
-  }
-
-  addExtraElements() {
     const privateMessage = buildElement("p", {
       className: css.privateMessage,
-      textContent: this.messageText,
+      textContent: config.messageText,
     });
 
-    const messageElement = this.htmlElement.querySelector(`.${css.bodyText}`);
-    messageElement.appendChild(privateMessage);
+    this.addToMessage("sent you a private message ");
+    this.addElement(privateMessage);
   }
 }
 
