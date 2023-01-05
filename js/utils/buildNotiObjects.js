@@ -2,6 +2,7 @@ import FollowNoti from "../classes/FollowNoti.js";
 import MessageNoti from "../classes/MessageNoti.js";
 import CommentNoti from "../classes/CommentNoti.js";
 import ReactNoti from "../classes/ReactNoti.js";
+import GroupNoti from "../classes/GroupNoti.js";
 
 /* 
 bound each constructor to a key so they can be accessed
@@ -16,6 +17,7 @@ const buildNotiObjects = (() => {
     message: MessageNoti,
     comment: CommentNoti,
     react: ReactNoti,
+    group: GroupNoti,
   };
 
   return function (notifications) {
