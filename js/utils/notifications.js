@@ -59,7 +59,7 @@ const notifications = [
     timestamp: "2 weeks ago",
     groupName: "Chess Club",
     groupUrl: "#",
-    joined: true,
+    joined: false,
   },
 ];
 
