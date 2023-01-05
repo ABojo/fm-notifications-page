@@ -1,20 +1,27 @@
 import Notification from "./Notification.js";
 import buildElement from "../utils/buildElement.js";
+import css from "../utils/css.js";
 
 class CommentNoti extends Notification {
   constructor(config) {
     super(config);
-    this.postTitle = config.postTitle;
-    this.postUrl = config.postUrl;
+    this.postImageUrl = config.postImageUrl;
 
     this.addExtraElements();
   }
 
   getBodyText() {
-    return "reacted to your post";
+    return "commented on your picture ";
   }
 
-  addExtraElements() {}
+  addExtraElements() {
+    const postImage = buildElement("img", {
+      className: css.postImage,
+      src: this.postImageUrl,
+    });
+
+    this.htmlElement.appendChild(postImage);
+  }
 }
 
 export default CommentNoti;
