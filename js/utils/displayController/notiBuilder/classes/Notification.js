@@ -1,9 +1,9 @@
 import buildElement from "../utils/buildElement.js";
-import css from "../utils/css.js";
+import css from "../utils/notiCss.js";
 
 /* 
-The notification class is responsible for generating the base element that all notifications share and
-marking the element as read. It is a general class so it should not be instantiated.
+The notification class is responsible for generating the base element that all notifications share. 
+It is a general class so it should not be instantiated.
 
 Subclasses can be used to create specific notification types that have
 custom text and markup.
@@ -56,11 +56,6 @@ class Notification {
   addElement(element) {
     const rootElement = this.getElement();
     rootElement.append(element);
-  }
-
-  markAsRead() {
-    const rootElement = this.getElement();
-    rootElement.classList.remove(css.unread);
   }
 }
 

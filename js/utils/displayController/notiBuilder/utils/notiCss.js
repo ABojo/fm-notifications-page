@@ -1,6 +1,6 @@
 /* contains class names for notification markup so they 
 dont need to be embeded directly into the construction code */
-const css = (() => {
+const notiCss = (() => {
   const base = "notification";
 
   return {
@@ -17,4 +17,4 @@ const css = (() => {
   };
 })();
 
-export default css;
+export default notiCss;

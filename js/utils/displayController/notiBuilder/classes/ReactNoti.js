@@ -1,6 +1,6 @@
 import Notification from "./Notification.js";
 import buildElement from "../utils/buildElement.js";
-import css from "../utils/css.js";
+import css from "../utils/notiCss.js";
 
 class ReactNoti extends Notification {
   constructor(config) {

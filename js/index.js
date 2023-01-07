@@ -1,80 +1,46 @@
-import FollowNotification from "./classes/FollowNoti.js";
+import fakeAPI from "./utils/fakeAPI/index.js";
+import notificationStorage from "./utils/notificationStorage/index.js";
+import displayController from "./utils/displayController/index.js";
 
-const rawNotis = [
-  {
-    type: "react",
-    unread: true,
-    name: "Mark Webber",
-    profileImageUrl: "/images/avatar-mark-webber.webp",
-    timestamp: "1m ago",
-    postTitle: "My first tournament today!",
-    postUrl: "#",
-  },
-  {
-    type: "follow",
-    unread: true,
-    name: "Angela Gray",
-    profileImageUrl: "/images/avatar-angela-gray.webp",
-    timestamp: "1m ago",
-  },
-  {
-    type: "message",
-    unread: false,
-    name: "Rizky Hasanuddin",
-    profileImageUrl: "/images/avatar-rizky-hasanuddin.webp",
-    timestamp: "5 days ago",
-    messageText: `Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm alreayd having lots of fun and improving my game.`,
-  },
-  {
-    type: "comment",
-    unread: false,
-    name: "Kimberly Smith",
-    profileImageUrl: "/images/avatar-kimberly-smith.webp",
-    timestamp: "5 days ago",
-    postImageUrl: "/images/image-chess.webp",
-  },
-];
+function init() {
+  //pull notis from api
+  const notifications = fakeAPI.getNotifications();
 
-const notis = [
-  new FollowNotification({
-    name: "Mark Webber",
-    profileImageUrl: "/images/avatar-mark-webber.webp",
-    timestamp: "1m ago",
-    unread: true,
-  }),
-  new FollowNotification({
-    name: "Mark Webber",
-    profileImageUrl: "/images/avatar-mark-webber.webp",
-    timestamp: "1m ago",
-    unread: true,
-  }),
-  new FollowNotification({
-    name: "Mark Webber",
-    profileImageUrl: "/images/avatar-mark-webber.webp",
-    timestamp: "1m ago",
-    unread: true,
-  }),
-  new FollowNotification({
-    name: "Mark Webber",
-    profileImageUrl: "/images/avatar-mark-webber.webp",
-    timestamp: "1m ago",
-    unread: true,
-  }),
-];
+  //load into storage
+  notificationStorage.addNotifications(notifications);
 
-const addNotifications = (() => {
-  const notiGrid = document.querySelector(".noti-grid");
+  displayController.setUnreadCount(3);
 
-  return function (notifications) {
-    notifications.forEach((noti) => notiGrid.appendChild(noti.getElement()));
-  };
-})();
+  //hook up mark all button
+  displayController.addMarkAllClickHandler(() => {
+    const notifications = notificationStorage.getNotifications();
 
-addNotifications(notis);
+    notifications.forEach((noti) => {
+      if (!noti.unread) return;
 
-//follow notification
-//react notification
-//group join
-//private message
-//comment on picture
-//left group
+      /* if server existed make an api call 
+        here to mark the noti as read in the backend */
+      noti.unread = false;
+      displayController.markNotificationAsRead(noti.id);
+    });
+
+    displayController.setUnreadCount(0);
+  });
+
+  //will be fired when an invidivual noti is marked as read
+  displayController.addNotiClickHandler((notiId) => {
+    const notification = notificationStorage.findById(notiId);
+
+    /* if server existed make an api call 
+        here to mark the noti as read in the backend */
+    notification.markAsRead();
+    displayController.markNotificationAsRead(notification.id);
+    const numberOfUnread = notificationStorage.getNumberOfUnread();
+    displayController.setUnreadCound(numberOfUnread);
+  });
+
+  //build all notifications and display them
+  displayController.addNotifications(notifications);
+}
+
+init();
