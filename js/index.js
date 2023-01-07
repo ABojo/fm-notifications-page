@@ -9,7 +9,9 @@ function init() {
   //load into storage
   notificationStorage.addNotifications(notifications);
 
-  displayController.setUnreadCount(3);
+  //set unread counter
+  const numberUnread = notificationStorage.getNumberOfUnread();
+  displayController.setUnreadCount(numberUnread);
 
   //hook up mark all button
   displayController.addMarkAllClickHandler(() => {
