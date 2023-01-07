@@ -21,6 +21,7 @@ class Notification {
     const image = buildElement("img", {
       className: css.profileImg,
       src: config.profileImageUrl,
+      alt: `Picture of ${config.name}`,
     });
 
     const message = buildElement("p", {
