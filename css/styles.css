@@ -114,6 +114,10 @@ body {
   margin-bottom: 0.1rem;
 }
 
+.notification--unread:hover {
+  cursor: pointer;
+}
+
 .notification__profile-img {
   width: 3rem;
   grid-row: 1 / 3;
