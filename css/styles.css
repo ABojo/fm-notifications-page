@@ -158,3 +158,29 @@ body {
   grid-row: 1 / 3;
   align-self: start;
 }
+
+/* 720 px */
+@media (max-width: 45em) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  .container__title {
+    font-size: 1.4rem;
+  }
+
+  .container__number {
+    margin-left: 0.3rem;
+  }
+
+  .container__mark-read {
+    font-size: 1rem;
+  }
+
+  .notification {
+    font-size: 0.9rem;
+  }
+}
