@@ -20,7 +20,7 @@ function init() {
 
       /* if server existed make an api call 
         here to mark the noti as read in the backend */
-      noti.unread = false;
+      noti.markAsRead();
       displayController.markNotificationAsRead(noti.id);
     });
 
@@ -34,9 +34,9 @@ function init() {
     /* if server existed make an api call 
         here to mark the noti as read in the backend */
     notification.markAsRead();
-    displayController.markNotificationAsRead(notification.id);
+    displayController.markNotificationAsRead(notification.getId());
     const numberOfUnread = notificationStorage.getNumberOfUnread();
-    displayController.setUnreadCound(numberOfUnread);
+    displayController.setUnreadCount(numberOfUnread);
   });
 
   //build all notifications and display them
