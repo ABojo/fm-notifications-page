@@ -2,9 +2,9 @@ import fakeAPI from "./utils/fakeAPI/index.js";
 import notificationStorage from "./utils/notificationStorage/index.js";
 import displayController from "./utils/displayController/index.js";
 
-const init = (() => {
+const init = ((api, notificationStorage, displayController) => {
   function fetchNotifications() {
-    const notifications = fakeAPI.getNotifications();
+    const notifications = api.getNotifications();
     return notifications;
   }
 
@@ -67,6 +67,6 @@ const init = (() => {
 
     addNotifcationsToScreen(notifications);
   };
-})();
+})(fakeAPI, notificationStorage, displayController);
 
 init();
