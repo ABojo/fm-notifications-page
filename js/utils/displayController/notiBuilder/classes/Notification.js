@@ -12,6 +12,7 @@ custom text and markup.
 class Notification {
   constructor(config) {
     const noti = buildElement("li", { className: css.noti });
+    noti.setAttribute("data-id", config.id);
 
     if (config.unread) {
       noti.classList.add(css.unread);

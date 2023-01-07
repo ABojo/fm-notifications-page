@@ -3,6 +3,7 @@ const fakeAPI = {
   getNotifications: function () {
     return [
       {
+        id: "1",
         type: "react",
         unread: true,
         name: "Mark Webber",
@@ -12,6 +13,7 @@ const fakeAPI = {
         postUrl: "#",
       },
       {
+        id: "2",
         type: "follow",
         unread: true,
         name: "Angela Gray",
@@ -19,6 +21,7 @@ const fakeAPI = {
         timestamp: "1m ago",
       },
       {
+        id: "3",
         type: "group",
         unread: true,
         name: "Jacob Thompson",
@@ -29,6 +32,7 @@ const fakeAPI = {
         joined: true,
       },
       {
+        id: "4",
         type: "message",
         unread: false,
         name: "Rizky Hasanuddin",
@@ -37,6 +41,7 @@ const fakeAPI = {
         messageText: `Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm alreayd having lots of fun and improving my game.`,
       },
       {
+        id: "5",
         type: "comment",
         unread: false,
         name: "Kimberly Smith",
@@ -45,6 +50,7 @@ const fakeAPI = {
         postImageUrl: "/images/image-chess.webp",
       },
       {
+        id: "6",
         type: "react",
         unread: false,
         name: "Nathan Peterson",
@@ -54,6 +60,7 @@ const fakeAPI = {
         postUrl: "#",
       },
       {
+        id: "7",
         type: "group",
         unread: false,
         name: "Anna Kim",
