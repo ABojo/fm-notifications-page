@@ -2,47 +2,71 @@ import fakeAPI from "./utils/fakeAPI/index.js";
 import notificationStorage from "./utils/notificationStorage/index.js";
 import displayController from "./utils/displayController/index.js";
 
-function init() {
-  //pull notis from api
-  const notifications = fakeAPI.getNotifications();
+const init = (() => {
+  function fetchNotifications() {
+    const notifications = fakeAPI.getNotifications();
+    return notifications;
+  }
 
-  //load into storage
-  notificationStorage.addNotifications(notifications);
+  function storeNotifications(notifications) {
+    notificationStorage.addNotifications(notifications);
+  }
 
-  //set unread counter
-  const numberUnread = notificationStorage.getNumberOfUnread();
-  displayController.setUnreadCount(numberUnread);
+  function updateUnreadCounter() {
+    const numberUnread = notificationStorage.getNumberOfUnread();
+    displayController.setUnreadCount(numberUnread);
+  }
 
-  //hook up mark all button
-  displayController.addMarkAllClickHandler(() => {
-    const notifications = notificationStorage.getNotifications();
+  function setupMarkAllHandler() {
+    displayController.addMarkAllClickHandler(() => {
+      const notifications = notificationStorage.getNotifications();
 
-    notifications.forEach((noti) => {
-      if (!noti.unread) return;
+      notifications.forEach((noti) => {
+        if (!noti.unread) return;
+
+        /* if server existed make an api call 
+          here to mark the noti as read in the backend */
+        noti.markAsRead();
+        displayController.markNotificationAsRead(noti.id);
+      });
+
+      displayController.setUnreadCount(0);
+    });
+  }
+
+  function setupNotiClickHandler() {
+    displayController.addNotiClickHandler((notiId) => {
+      const notification = notificationStorage.findById(notiId);
 
       /* if server existed make an api call 
-        here to mark the noti as read in the backend */
-      noti.markAsRead();
-      displayController.markNotificationAsRead(noti.id);
+          here to mark the noti as read in the backend */
+      notification.markAsRead();
+      displayController.markNotificationAsRead(notification.getId());
+      const numberOfUnread = notificationStorage.getNumberOfUnread();
+      displayController.setUnreadCount(numberOfUnread);
     });
+  }
 
-    displayController.setUnreadCount(0);
-  });
+  function setupEventHandlers() {
+    setupMarkAllHandler();
+    setupNotiClickHandler();
+  }
 
-  //will be fired when an invidivual noti is marked as read
-  displayController.addNotiClickHandler((notiId) => {
-    const notification = notificationStorage.findById(notiId);
+  function addNotifcationsToScreen(notifications) {
+    displayController.addNotifications(notifications);
+  }
 
-    /* if server existed make an api call 
-        here to mark the noti as read in the backend */
-    notification.markAsRead();
-    displayController.markNotificationAsRead(notification.getId());
-    const numberOfUnread = notificationStorage.getNumberOfUnread();
-    displayController.setUnreadCount(numberOfUnread);
-  });
+  return function () {
+    const notifications = fetchNotifications();
 
-  //build all notifications and display them
-  displayController.addNotifications(notifications);
-}
+    storeNotifications(notifications);
+
+    updateUnreadCounter();
+
+    setupEventHandlers();
+
+    addNotifcationsToScreen(notifications);
+  };
+})();
 
 init();
