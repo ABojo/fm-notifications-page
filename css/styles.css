@@ -35,8 +35,8 @@ body {
 }
 
 .container {
-  max-width: 50rem;
-  margin: 5rem auto;
+  max-width: 45rem;
+  margin: 6rem auto;
   padding: 1.5rem;
   background-color: var(--color-white);
   border-radius: var(--border-radius-md);
@@ -60,8 +60,8 @@ body {
 }
 
 .container__number {
-  margin-left: 0.5rem;
-  padding: 0.3rem 0.7rem;
+  margin-left: 1rem;
+  padding: 0.15rem 0.7rem;
   border-radius: var(--border-radius-sm);
   background-color: var(--color-blue);
   color: white;
@@ -100,7 +100,7 @@ body {
 }
 
 .notification--unread {
-  background-color: var(--color-gray-blue-2);
+  background-color: var(--color-gray-blue-1);
 }
 
 .notification--unread > .notification__message::after {
@@ -133,6 +133,7 @@ body {
 .notification__group {
   text-decoration: none;
   font-weight: 800;
+  margin-left: 0.3rem;
 }
 
 .notification__post {
