@@ -9,6 +9,7 @@ class CommentNoti extends Notification {
     const postImage = buildElement("img", {
       className: css.postImage,
       src: config.postImageUrl,
+      alt: "Thumbnail of your image",
     });
 
     this.addToMessage("commented on your picture ");
