@@ -2,6 +2,8 @@
 
 I built this project to complete [this FrontendMentor.io challenge](https://www.frontendmentor.io/challenges/notifications-page-DqK5QAmKbC). The challenge was to design the page based on the mock up and implement a button that allows you to mark all the notifications as read. It wouldn't have been very complicated to select all the elements with the unread class, remove it, and then set the counters text content to zero so I decided to go a bit beyond the challenge.
 
+[Click here to view the project](https://abojo-notifications-page.netlify.app/)
+
 ## How I went beyond the challenge
 
 - Structuring the code in a way that would allow you to quickly make the changes needed to use data from a real server/implement persistence
