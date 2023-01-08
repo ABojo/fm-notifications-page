@@ -1,0 +1,23 @@
+{
+  "name": "notifications",
+  "version": "1.0.0",
+  "description": "I built this project to complete [this FrontendMentor.io challenge](https://www.frontendmentor.io/challenges/notifications-page-DqK5QAmKbC). The challenge was to design the page based on the mock up and implement a button that allows you to mark all the notifications as read. It wouldn't have been very complicated to select all the elements with the unread class, remove it, and then set the counters text content to zero so I decided to go a bit beyond the challenge.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ABojo/fm-notifications-page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ABojo/fm-notifications-page/issues"
+  },
+  "homepage": "https://github.com/ABojo/fm-notifications-page#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
